@@ -1,7 +1,6 @@
 'use strict'
 
 import { app, BrowserWindow } from 'electron'
-import fs from 'fs'
 
 /**
  * Set `__static` path to static files in production
@@ -67,27 +66,17 @@ app.on('ready', () => {
 })
  */
 
-process.on('uncaughtException', function (d) {
-  // 创建文件
-  fs.open('resources/app/log.txt', 'w+', function (err, fd) {
-    if (err) {
-      return console.error(err)
-    }
-  })
-
+process.on('uncaughtException', function (err) {
   // 写入服务器日志
-  fs.appendFile('resources/app/log.txt', d.toString(), function (err) {
-    if (err) {
-      return console.error(err)
-    }
-  })
+  if (err) {
+    return console.error(err)
+  }
 })
 
 process.on('unhandledRejection', function (err) {
   // 写入服务器错误日志
-  fs.appendFile('resources/app/log.txt', err.toString(), function (err) {
-    if (err) {
-      return console.error(err)
-    }
-  })
+
+  if (err) {
+    return console.error(err)
+  }
 })

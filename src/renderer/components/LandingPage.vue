@@ -69,7 +69,7 @@ export default {
       ele.style = 'display:none;'
       this.eleFile = ele
       document.body.appendChild(ele)
-      document.addEventListener('change', func)
+      ele.addEventListener('change', func)
       return this.eleFile
     },
     uploadFile () {

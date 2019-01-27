@@ -1,6 +1,18 @@
 const sqlite3 = require('sqlite3').verbose()
 const db = new sqlite3.Database('gg')
 
+const _run = db.run
+db.run = function () {
+  console.log('sql:', arguments[0])
+  return _run.apply(db, Array.prototype.slice.apply(arguments))
+}
+
+const _all = db.all
+db.all = function () {
+  console.log('sql:', arguments[0])
+  return _all.apply(db, Array.prototype.slice.apply(arguments))
+}
+
 const tableName = 'teacher'
 
 export async function initTable () {
@@ -67,6 +79,7 @@ export async function selectData (offset = 0, limit = 10) {
   const sql = `select * from ${tableName} limit ${offset},${limit};`
   return new Promise((resolve, reject) => {
     db.all(sql, function (err, result) {
+      console.log(err, result)
       if (err) {
         return reject(err)
       }
@@ -77,7 +90,6 @@ export async function selectData (offset = 0, limit = 10) {
 
 export async function selectDataByName (name, offset = 0, limit = 10) {
   const sql = `select * from ${tableName} where name like '%${name}%' limit ${offset},${limit};`
-  console.log(sql)
   return new Promise((resolve, reject) => {
     db.all(sql, function (err, result) {
       if (err) {
