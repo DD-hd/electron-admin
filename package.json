@@ -6,7 +6,7 @@
   "license": null,
   "main": "./dist/electron/main.js",
   "scripts": {
-    "make": "electron-builder",
+    "make": "electron-builder --mac",
     "build": "node .electron-vue/build.js && electron-builder",
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
@@ -23,7 +23,7 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "elec-vue",
+    "productName": "106杯奶茶",
     "appId": "com.example.yourapp",
     "directories": {
       "output": "build"

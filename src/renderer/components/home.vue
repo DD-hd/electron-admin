@@ -1,15 +1,15 @@
 <template>
   <div class="wrapper">
     <header class="box-center header">
-      <div class="img-logo">
+      <!-- <div class="img-logo">
         <img src="~@/assets/logo.png" alt="electron-vue" class="img-auto">
-      </div>
+      </div> -->
       <div class="box-btn">
         <button class="btn-default" @click="uploadFile">上传文件</button>
         <button class="btn-default" @click="downloadTemplate">下载模板</button>
         <div class="btn-search">
-          <input type="text" class="search-input" v-model="tname">
-          <button class="btn-default" @click="searchBody">搜索</button>
+          <input type="text" class="search-input" v-model="tname" placeholder="按名字搜索">
+          <button class="btn-default" @click="searchBody" >搜索</button>
         </div>
       </div>
     </header>
